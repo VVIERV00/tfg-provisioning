@@ -1,0 +1,14 @@
+postgresql_databases:
+ - name: notesdb # required; the rest are optional
+   port: 5432 # defaults to not set
+   owner: postgres # defaults to postgresql_user
+  #  login_host: 0.0.0.0 # defaults to 'localhost'
+
+# Users to ensure exist.
+postgresql_users: 
+ - name: postgres #required; the rest are optional
+   password: postgres # defaults to not set
+   db: notesdb # defaults to not set
+   # login_host: 0.0.0.0 # defaults to 'localhost'
+   login_password: postgres # defaults to not set
+   login_user: postgres # defaults to '{{ postgresql_user }}'

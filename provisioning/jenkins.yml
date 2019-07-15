@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    ansible_become_password: vagrant
+  vars_files:
+    - host_vars/jenkins_vars.yml
+  pre_tasks:
+    - name: installing repo for Java 8 in Ubuntu
+      apt_repository: repo='ppa:openjdk-r/ppa'
+    - name: update repository
+      apt: update_cache=yes cache_valid_time=600  
+  roles:
+    - role: geerlingguy.java
+      when: "ansible_os_family == 'Debian'"
+      java_packages:
+        - openjdk-8-jdk
+    - role: geerlingguy.jenkins
+ 
