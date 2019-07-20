@@ -26,15 +26,17 @@
 
     - when: script_run | nexus_groovy_details == 'Global script failure'
       block:
-      
+
         - name: Debug script result for global fail
           debug:
             var: script_run
+
         - name: Global script failure at nexus level
           fail:
             msg: >-
               Running the script {{ script_name }} failed at nexus level.
               See the above debug output
+
 
     - name: Debug script result for failed script actions
       debug:

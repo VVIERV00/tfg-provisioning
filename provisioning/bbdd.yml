@@ -16,5 +16,9 @@
       java_packages:
         - openjdk-8-jdk
     - role: geerlingguy.postgresql
+
+  tasks:
+    - name: allow external acces
+      lineinfile: dest=/etc/postgresql/10/main/postgresql.conf regexp="^#listen_addresses" line="listen_addresses = '*'" state=present backup=yes
       
  
