@@ -63,6 +63,21 @@ Vagrant.configure("2") do |config|
         ansible.playbook = "provisioning/nexus.yml"
     end
   end
+  config.vm.define "sonar" do |sonar|
+    sonar.vm.hostname = 'sonar'
+    sonar.vm.network "forwarded_port", guest: 80, host:5050
+    sonar.vm.network "forwarded_port", guest: 3306, host:5051
+    sonar.vm.network :private_network, ip: "192.168.10.104"
+    sonar.vm.provider :virtualbox do |vb|
+        vb.name="maquina sonar"
+        vb.memory = 3024
+    #   vb.cpus = 2
+    #   v.gui = true
+    end
+    sonar.vm.provision "ansible" do |ansible|
+        ansible.playbook = "provisioning/sonar.yml"
+    end
+  end
 
   # config.vm.provision "shell", inline: <<-SHELL
   #   apt-get update

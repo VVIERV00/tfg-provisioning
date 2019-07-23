@@ -1,0 +1,88 @@
+---
+sudo: required
+language: python
+services: docker
+
+env:
+  - version=">=2.7,<2.8" distro="alpine-latest"
+  - version="" distro="alpine-latest"
+  - version="devel" distro="alpine-latest"
+  - version=">=2.7,<2.8" distro="alpine-edge"
+  - version="" distro="alpine-edge"
+  - version="devel" distro="alpine-edge"
+  - version=">=2.7,<2.8" distro="archlinux"
+  - version="" distro="archlinux"
+  - version="devel" distro="archlinux"
+  - version=">=2.7,<2.8" distro="centos-6"
+  - version="" distro="centos-6"
+  - version="devel" distro="centos-6"
+  - version=">=2.7,<2.8" distro="centos-latest"
+  - version="" distro="centos-latest"
+  - version="devel" distro="centos-latest"
+  - version=">=2.7,<2.8" distro="debian-stable"
+  - version="" distro="debian-stable"
+  - version="devel" distro="debian-stable"
+  - version=">=2.7,<2.8" distro="debian-unstable"
+  - version="" distro="debian-unstable"
+  - version="devel" distro="debian-unstable"
+  - version=">=2.7,<2.8" distro="fedora-latest"
+  - version="" distro="fedora-latest"
+  - version="devel" distro="fedora-latest"
+  - version=">=2.7,<2.8" distro="fedora-rawhide"
+  - version="" distro="fedora-rawhide"
+  - version="devel" distro="fedora-rawhide"
+  - version=">=2.7,<2.8" distro="opensuse-leap"
+  - version="" distro="opensuse-leap"
+  - version="devel" distro="opensuse-leap"
+  - version=">=2.7,<2.8" distro="ubuntu-rolling"
+  - version="" distro="ubuntu-rolling"
+  - version="devel" distro="ubuntu-rolling"
+  - version=">=2.7,<2.8" distro="ubuntu-latest"
+  - version="" distro="ubuntu-latest"
+  - version="devel" distro="ubuntu-latest"
+  - version=">=2.7,<2.8" distro="ubuntu-devel"
+  - version="" distro="ubuntu-devel"
+  - version="devel" distro="ubuntu-devel"
+
+matrix:
+  allow_failures:
+    - env: version=">=2.7,<2.8" distro="alpine-edge"
+    - env: version="" distro="alpine-edge"
+    - env: version="devel" distro="alpine-edge"
+    - env: version="devel" distro="alpine-latest"
+    - env: version="devel" distro="archlinux"
+    - env: version="devel" distro="centos-6"
+    - env: version="devel" distro="centos-latest"
+    - env: version="devel" distro="debian-stable"
+    - env: version=">=2.7,<2.8" distro="debian-unstable"
+    - env: version="" distro="debian-unstable"
+    - env: version="devel" distro="debian-unstable"
+    - env: version="devel" distro="fedora-latest"
+    - env: version=">=2.7,<2.8" distro="fedora-rawhide"
+    - env: version="" distro="fedora-rawhide"
+    - env: version="devel" distro="fedora-rawhide"
+    - env: version="devel" distro="opensuse-leap"
+    - env: version="devel" distro="ubuntu-rolling"
+    - env: version=">=2.7,<2.8" distro="ubuntu-devel"
+    - env: version="" distro="ubuntu-devel"
+    - env: version="devel" distro="ubuntu-devel"
+    - env: version="devel" distro="ubuntu-latest"
+
+cache:
+  - pip
+
+install:
+  - pip install --upgrade pip
+  - if [ "${version}" != "devel" ] ; then pip install ansible"${version}" ; fi
+  - if [ "${version}" = "devel" ] ; then pip install git+https://github.com/ansible/ansible.git@devel ; fi
+  - pip install molecule
+  - pip install docker
+
+script:
+  - if [ "${expectation}" = "fail" ] ; then ! molecule test --scenario-name "${distro}" ; else molecule test --scenario-name "${distro}" ; fi
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  slack:
+    secure: "j5UrbLIi66Cf5EzLLlaC4ODBBc+dAgTs12XRfxtUzMtf+J1LV4cvrBkS5dcwQd59MOMx7QyKtFP2jYrDtgsUNjmj44jYAPv6Fk3MPH6JtIGeJyeVj+i6QkuT0ATN5xRInAz4mTWPZcfDtLC7yhA/hkFbCZcmVVNDlJtpag6W/OZfoqrXZ3eM+ak/rXYAeothWu6GfWpYuPE6bigpsfZ//Jj6zrXQK7snE9B3B7IBYA3MFjTTwVFtWez+L8+5AKgDQq5W/8XoaD+Gf7/cXrjaPUg3opsulgiEgnQsCRGxb0SwAf/D2He4+zzlqE0gIGMxW60QlrPvpmTaG07qpxwp8TYrd32tW+VflcqPhRLQdbWUWu3tBmVVgb7bn2NAys+WN0qwRFqvm9OWmpqe8Vwm7TJ3a4nGwGjPphegoHDpKhnxY//KPxwsXA3ZmBr4cacwz8Q99k9/rk/hxv0Jrv2sJUQVVHp/8fmf/UWWd6tyCM1YXv3isFvS/oAff6X971b2/cVqBhsTIVgM2Y0yQkAjpXbfy/jCEnZPO4sy4B7hXzfejLSOQdwe2IP1JYuGDFjSZgSG3/4Oc5UzyR07lkrhjmFmXwa7S0vL2MHJTcnqtoLOHm8Fd7tzt5Blg6z9iDLYWKCjRiCb/rVWgLlvbTCZP6oSEFeV3fBUtwAUbqhSXFE="
+  email: false

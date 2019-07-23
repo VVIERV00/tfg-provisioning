@@ -408,7 +408,6 @@
 - name: Register default admin password for next operations
   set_fact:
     current_nexus_admin_password: "{{ nexus_default_admin_password }}"
-  when: (nexus_api_head_with_default_password.status | default(false)) == 200
 
 - name: Ensure current Nexus password is known
   fail:

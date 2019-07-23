@@ -15,6 +15,6 @@
       when: "ansible_os_family == 'Debian'"
       java_packages:
         - openjdk-8-jdk
-    - role: nexus3
+    - role: nexus
 
  

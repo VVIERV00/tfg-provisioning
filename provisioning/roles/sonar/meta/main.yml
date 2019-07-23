@@ -1,7 +1,7 @@
 ---
 dependencies:
   - geerlingguy.java
-  - geerlingguy.mysql
+  - mysql
 
 galaxy_info:
   author: geerlingguy

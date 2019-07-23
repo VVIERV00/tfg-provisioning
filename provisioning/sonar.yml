@@ -1,0 +1,30 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: yes
+  vars:
+    ansible_become_password: vagrant
+  vars_files:
+    - host_vars/sonar_vars.yml
+  pre_tasks:
+    - name: installing repo for Java 8 in Ubuntu
+      apt_repository: repo='ppa:openjdk-r/ppa'
+    - name: update repository
+      apt: update_cache=yes cache_valid_time=600
+    - name: install python pip
+      apt:
+        name: python-pip
+    - name: install pymysql module
+      pip: 
+        name: pymysql
+
+  roles:
+    - role: geerlingguy.java
+      when: "ansible_os_family == 'Debian'"
+      java_packages:
+        - openjdk-8-jdk
+    - role: bootstrap
+    - role: mysql
+    - role: sonar
+
+ 

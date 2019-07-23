@@ -1,0 +1,8 @@
+---
+# handlers file for mysql
+- name: restart mysql server
+  service:
+    name: "{{ mysql_service }}"
+    state: restarted
+  when:
+    - ansible_virtualization_type != "docker"

@@ -57,10 +57,10 @@ nexus_default_context_path: '/'
 # i.e.
 # - Set your new password in nexus_admin_password
 # - Run `ansible-playbook -i your/inventory.ini your_playbook.yml -e nexus_default_admin_password=oldpassword`
-nexus_default_admin_password: 'admin123'
+nexus_default_admin_password: admin123
 # Nexus admin password to set and use.
 # Note: this should be vault encrypted in your playbook.
-nexus_admin_password: 'changeme'
+nexus_admin_password: admin123
 
 nexus_anonymous_access: false
 
