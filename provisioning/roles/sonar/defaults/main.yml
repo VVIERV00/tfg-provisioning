@@ -7,7 +7,7 @@ sonar_version: 4.5.6
 sonar_download_url: "https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-{{ sonar_version }}.zip"
 sonar_version_directory: "sonarqube-{{ sonar_version }}"
 
-sonar_web_context: ''
+sonar_web_context: '/sonar'
 
 # MySQL database connection details.
 sonar_mysql_username: sonar

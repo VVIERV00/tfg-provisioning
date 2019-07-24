@@ -24,7 +24,7 @@
       java_packages:
         - openjdk-8-jdk
     - role: bootstrap
-    - role: mysql
+    #- role: geerlingguy.mysql
     - role: sonar
 
  
