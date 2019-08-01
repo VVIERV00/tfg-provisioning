@@ -3,24 +3,13 @@ postgresql_databases:
   # port: 5432 # defaults to not set
    owner: postgres # defaults to postgresql_user
   #  login_host: 0.0.0.0 # defaults to 'localhost'
- - name: sonar # required; the rest are optional
-   owner: sonar
-   login_host: 0.0.0.0 
-   lc_collate: 'en_US.UTF-8'
-   lc_ctype: 'en_US.UTF-8'
-   encoding: 'UTF-8'
+ - name: sonardb # required; the rest are optional
+   owner: postgres
 
 # Users to ensure exist.
 postgresql_users: 
  - name: postgres #required; the rest are optional
    password: postgres # defaults to not set
    db: notesdb # defaults to not set
-   # login_host: 0.0.0.0 # defaults to 'localhost'
-   login_password: postgres # defaults to not set
-   login_user: postgres # defaults to '{{ postgresql_user }}'
- - name: sonar #required; the rest are optional
-   password: sonar # defaults to not set
-   db: sonar # defaults to not set
-   login_host: 0.0.0.0 # defaults to 'localhost'
-   login_password: sonar # defaults to not set
-   login_user: sonar # defaults to '{{ postgresql_user }}'
+  # login_host: '0.0.0.0/0' # defaults to 'localhost'
+ 

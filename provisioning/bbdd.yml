@@ -9,7 +9,14 @@
     - name: installing repo for Java 8 in Ubuntu
       apt_repository: repo='ppa:openjdk-r/ppa'
     - name: update repository
-      apt: update_cache=yes cache_valid_time=600  
+      apt: update_cache=yes cache_valid_time=600 
+    - name: install python pip
+      apt:
+        name: python-pip
+    - name: install pymysql and psycopg2 module
+      pip: 
+        name: pymysql, psycopg2
+
   roles:
     - role: geerlingguy.java
       when: "ansible_os_family == 'Debian'"
