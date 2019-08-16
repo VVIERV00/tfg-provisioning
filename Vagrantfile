@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
     default.vm.network :private_network, ip: "192.168.10.100"
     default.vm.provider :virtualbox do |vb|
         vb.name="maquina Jenkins"
-        vb.memory = 2024
+        vb.memory = 2048
     #   vb.cpus = 2
     #   v.gui = true
     end
@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
     #target.vm.network "public_network"
     target.vm.provider :virtualbox do |vb|
         vb.name="maquina destino"
-        vb.memory = 2024
+        vb.memory = 2048
     #   vb.cpus = 2
     #   v.gui = true
     end
