@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
     default.vm.network :private_network, ip: "192.168.10.100"
     default.vm.provider :virtualbox do |vb|
         vb.name="maquina Jenkins"
-        vb.memory = 2524
+        vb.memory = 2024
     #   vb.cpus = 2
     #   v.gui = true
     end
@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
     #target.vm.network "public_network"
     target.vm.provider :virtualbox do |vb|
         vb.name="maquina destino"
-        vb.memory = 2524
+        vb.memory = 2024
     #   vb.cpus = 2
     #   v.gui = true
     end
@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
     bbdd.vm.network :private_network, ip: "192.168.10.102"
     bbdd.vm.provider :virtualbox do |vb|
         vb.name="maquina bbdd"
-        vb.memory = 1524
+        vb.memory = 1024
     #   vb.cpus = 2
     #   v.gui = true
     end
@@ -55,7 +55,7 @@ Vagrant.configure("2") do |config|
     nexus.vm.network :private_network, ip: "192.168.10.103"
     nexus.vm.provider :virtualbox do |vb|
         vb.name="maquina nexus"
-        vb.memory = 1524
+        vb.memory = 2048
     #   vb.cpus = 2
     #   v.gui = true
     end
@@ -70,7 +70,7 @@ Vagrant.configure("2") do |config|
     sonar.vm.network :private_network, ip: "192.168.10.104"
     sonar.vm.provider :virtualbox do |vb|
         vb.name="maquina sonar"
-        vb.memory = 3224
+        vb.memory = 3072
     #   vb.cpus = 2
     #   v.gui = true
     end
