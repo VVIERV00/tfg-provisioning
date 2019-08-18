@@ -16,5 +16,6 @@
       java_packages:
         - openjdk-8-jdk
     - role: bootstrap
+    - role: tomcat
 
  
