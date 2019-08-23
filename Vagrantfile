@@ -21,9 +21,10 @@ Vagrant.configure("2") do |config|
   end
   config.vm.define "target" do |target|
     target.vm.hostname = 'target'
-    target.vm.network "forwarded_port", guest: 80, host:8080
+    target.vm.network "forwarded_port", guest: 8080, host:8080
     target.vm.network :private_network, ip: "192.168.10.101"
     #target.vm.network "public_network"
+    target.vm.synced_folder "data2", "/vagrant_data"
     target.vm.provider :virtualbox do |vb|
         vb.name="maquina destino"
         vb.memory = 2048

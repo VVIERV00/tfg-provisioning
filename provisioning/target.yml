@@ -1,6 +1,8 @@
 ---
 - hosts: all
   become: yes
+  gather_facts: yes
+  serial: 30%
   vars:
     ansible_become_password: vagrant
   vars_files:
@@ -17,5 +19,3 @@
         - openjdk-8-jdk
     - role: bootstrap
     - role: tomcat
-
- 
