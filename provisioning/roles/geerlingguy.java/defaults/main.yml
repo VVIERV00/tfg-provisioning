@@ -4,4 +4,4 @@
 java_packages: 
   - openjdk-8-jdk
 
-java_home: ""
+java_home: "/usr/lib/jvm/java-8-openjdk-amd64/"
